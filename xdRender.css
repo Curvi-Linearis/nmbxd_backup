@@ -1,0 +1,49 @@
+#renderArea{
+    background-color: hsl(240, 38%, 13%);
+}
+
+.basicInfo *{
+    color: #ca8;
+}
+
+.title, .name{
+    font-weight: bold;
+}
+
+.title{
+    font-size: 1.1rem;
+    color: #88c;
+}
+
+.name{
+    font-size: 1.25rem;
+    color: #dac;
+}
+
+.content{
+    color: rgb(143, 141, 158);
+    font-size: 1.1em;
+}
+
+.image img{
+    height: 20vh;
+}
+
+.reply{
+    border: 1px solid rgb(143, 141, 158);
+}
+
+a{
+    text-decoration: none;
+    color: #b68;
+}
+
+a:hover{
+    color:#dac;
+}
+
+.posignal{
+    border-radius: 10%;
+    background-color: #849;
+    font-weight: bold;
+}

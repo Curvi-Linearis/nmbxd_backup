@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="xdRender.css" rel="stylesheet">
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script src="vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body class="row">
+    <div class="col-2"></div>
+    <div class="col-8 my-2" id="renderArea">
+        <div class="row my-2">
+            <div class="col-1"></div>
+            <div class="head col-10" :id="xdJson.id">
+                <div class="basicInfo row mb-2">
+                        <div class="info row col-3">
+                            <div class="col-4 text-danger fw-bold" v-show="isSage()">SAGE</div>
+                            <div class="posignal col-2 px-0 text-center">Po</div>
+                            <div class="cookieId col-6">{{xdJson.user_hash}}</div>
+                        </div>
+                        <div class="time flex-grow-0 col-6 text-center">{{xdJson.now}}</div>
+                        <div class="strID col-3 text-end">>>No.{{xdJson.id}}</div>
+                </div>
+                <div class="name" v-show="hasName(0)">{{xdJson.name}}</div>
+                <div class="title" v-show="hasTitle(0)">{{xdJson.title}}</div>
+                <div class="content">{{xdJson.content}}</div>
+                <div class="image"><img :src="getPictureUrl()"></div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row py-2 reply" v-for="index in 19 * flag">
+                <div class="col-1"></div>
+                <div class="head col-10 py-2" v-if="replies[index]" :id="replies[index].id">
+                    <div class="basicInfo row mb-2">
+                            <div class="info row col-3">
+                                <div class="col-4 text-danger fw-bold" v-show="isSage()">SAGE</div>
+                                <div class="posignal col-2 px-0 text-center" v-if="replies[index] && isPo(replies[index].user_hash)">Po</div>
+                                <div class="cookieId col-6 ps-1" v-if="replies[index]">{{replies[index].user_hash}}</div>
+                            </div>
+                            <div class="time col-6 text-center"  v-if="replies[index]">{{replies[index].now}}</div>
+                            <div class="strID col-3 text-end" v-if="replies[index]">>>No.{{replies[index].id}}</div>
+                    </div>
+                    <div class="name" v-if="replies[index] && hasName(index)">{{replies[index].name}}</div>
+                    <div class="title" v-if="replies[index] && hasTitle(index)">{{replies[index].title}}</div>
+                    <div class="content" v-if="replies[index]" v-html="replies[index].content"></div>
+                    <div class="image" v-if="replies[index] && getReplyPictureUrl(index)"><img :src="getReplyPictureUrl(index)"></div>
+                </div>
+                <div class="col-1"></div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <script src="xdRender.js"></script>
+</body>
+</html>
